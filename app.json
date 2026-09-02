@@ -1,0 +1,35 @@
+{
+  "name": "channel-null",
+  "version": "0.1.0",
+  "displayName": "Channel Null",
+  "description": "A PersonalClaw channel provider.",
+  "icon": "Blocks",
+  "license": "MIT",
+  "tags": [
+    "channel"
+  ],
+  "cli": {
+    "setup": "app_cli:setup",
+    "doctor": "app_cli:doctor"
+  },
+  "loggerRoots": [
+    "channel_null"
+  ],
+  "provider": {
+    "type": "channel",
+    "implementation": "provider:create_provider",
+    "settingsSchema": {
+      "type": "object",
+      "properties": {
+        "timeout_secs": {
+          "type": "integer",
+          "default": 20,
+          "x-meta": {
+            "label": "Request timeout",
+            "help": "Seconds this provider waits before giving up."
+          }
+        }
+      }
+    }
+  }
+}
