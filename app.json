@@ -1,8 +1,8 @@
 {
   "name": "channel-null",
   "version": "0.1.0",
-  "displayName": "Channel Null",
-  "description": "A PersonalClaw channel provider.",
+  "displayName": "Null Channel",
+  "description": "The teaching channel: accepts every outbound message while connected and delivers none of them. Inspect what was sent via the in-memory record or an optional JSONL outbox. Fork it to start a real transport.",
   "icon": "Blocks",
   "license": "MIT",
   "tags": [
@@ -21,12 +21,24 @@
     "settingsSchema": {
       "type": "object",
       "properties": {
-        "timeout_secs": {
+        "keep_last": {
           "type": "integer",
-          "default": 20,
+          "default": 100,
+          "minimum": 1,
           "x-meta": {
-            "label": "Request timeout",
-            "help": "Seconds this provider waits before giving up."
+            "label": "Messages to remember",
+            "help": "How many accepted messages the in-memory record keeps. Oldest are dropped first."
+          }
+        },
+        "outbox_path": {
+          "type": "string",
+          "default": "",
+          "x-meta": {
+            "label": "Outbox file",
+            "help": "When set, every accepted message is appended to this file as JSONL. Leave empty to keep the record in memory only.",
+            "tags": [
+              "advanced"
+            ]
           }
         }
       }
